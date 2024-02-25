@@ -9,8 +9,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 
 import com.productservice.productservice.dto.FakeStoreProductDto;
+import com.productservice.productservice.dto.GenericStoreCretaProductDto;
 import com.productservice.productservice.dto.GenericStoreProduct;
 import org.springframework.http.ResponseEntity; // Add missing import statement
  // Add missing import statement
@@ -38,6 +40,17 @@ public class FakeStoreProductService implements ProductService {
         return genericStoreProductDto;
     }
 
+    public static GenericStoreCretaProductDto convertToGenericCretaStoreProductDto(FakeStoreProductDto fakeStoreProductDto) {
+        GenericStoreCretaProductDto genericStoreCretaProductDto = new GenericStoreCretaProductDto();
+        genericStoreCretaProductDto.setId(fakeStoreProductDto.getId());
+        genericStoreCretaProductDto.setTitle(fakeStoreProductDto.getTitle());
+        genericStoreCretaProductDto.setPrice(fakeStoreProductDto.getPrice());
+        genericStoreCretaProductDto.setCategory(fakeStoreProductDto.getCategory());
+        genericStoreCretaProductDto.setDescription(fakeStoreProductDto.getDescription());
+        genericStoreCretaProductDto.setImage(fakeStoreProductDto.getImage());
+        return genericStoreCretaProductDto;
+    }
+
 
 
     @Override
@@ -49,10 +62,6 @@ public class FakeStoreProductService implements ProductService {
         return convertToGenericStoreProductDto(responseEntity.getBody());
 
     }
-
-    // ...
-
-    // ...
 
     @Override
     public List <FakeStoreProductDto> getAllProducts() {
@@ -68,8 +77,13 @@ public class FakeStoreProductService implements ProductService {
     // ...
 
     @Override
-    public void createProduct() {
-        throw new UnsupportedOperationException("Unimplemented method 'createProduct'");
+    public GenericStoreProduct createProduct(GenericStoreCretaProductDto genericStoreCreate) {
+
+        System.out.println("Hello World Fake Create Product");
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity <FakeStoreProductDto> responseEntity = restTemplate.postForEntity(getAllProductsUrl, genericStoreCreate, FakeStoreProductDto.class);
+        return convertToGenericStoreProductDto(responseEntity.getBody());
+        // throw new UnsupportedOperationException("Unimplemented method 'createProduct'");
     }
 
     @Override

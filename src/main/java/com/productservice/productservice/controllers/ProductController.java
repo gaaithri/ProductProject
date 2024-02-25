@@ -1,5 +1,6 @@
 package com.productservice.productservice.controllers;
 import com.productservice.productservice.dto.FakeStoreProductDto;
+import com.productservice.productservice.dto.GenericStoreCretaProductDto;
 import com.productservice.productservice.dto.GenericStoreProduct;
 import com.productservice.productservice.services.ProductService;
 import org.springframework.web.bind.annotation.*;
@@ -39,8 +40,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public void createProduct(){
-
+    public GenericStoreProduct createProduct(@RequestBody GenericStoreCretaProductDto genericStoreCreate){
+        System.out.println("Create Product, Tada");
+        return productService.createProduct(genericStoreCreate);
     }
 
     @PutMapping("/{id}")

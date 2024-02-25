@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.productservice.productservice.dto.FakeStoreProductDto;
 import com.productservice.productservice.dto.GenericStoreProduct;
+import com.productservice.productservice.dto.GenericStoreCretaProductDto;
 @Service
 public interface ProductService {
 
@@ -19,7 +20,8 @@ public interface ProductService {
     void deleteProductById();
 
 
-    void createProduct();
+    GenericStoreProduct createProduct(GenericStoreCretaProductDto genericStoreCretaProductDto);
+
 
 
     void updateProductById(Long id);
