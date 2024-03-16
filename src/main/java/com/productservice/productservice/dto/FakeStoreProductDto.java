@@ -14,4 +14,8 @@ public class FakeStoreProductDto {
     private String description;
     private String image;
 
+
+
+    
+
 }
