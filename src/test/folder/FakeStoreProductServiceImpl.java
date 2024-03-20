@@ -5,13 +5,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.productservice.productservice.dto.FakeStoreProductDto;
+import com.productservice.productservice.dto.GenericStoreProduct;
 
 @Service
 public class FakeStoreProductServiceImpl implements  ProductService{
 
+    /**
+     * @param id
+     * @return
+     */
     @Override
-    public FakeStoreProductDto getProductById(Long id) {
-        return ;
+    public void getProductById(){
 
     }
 

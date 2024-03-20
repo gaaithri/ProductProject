@@ -25,7 +25,7 @@ public class ProductController {
     };
 
     @GetMapping
-    public List <FakeStoreProductDto> getAllProducts(){
+    public List <GenericStoreProduct> getAllProducts(){
         System.out.println("Get All Productes");
         return productService.getAllProducts();
     };
